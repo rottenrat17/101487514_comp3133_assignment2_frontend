@@ -7,10 +7,21 @@ import { environment } from '../environments/environment';
 // Must stay in sync with AuthService (same storage key for the JWT).
 const TOKEN_KEY = 'ems_token';
 
+function resolveGraphqlUri(): string {
+  if (typeof window !== 'undefined') {
+    const w = (window as unknown as { __GRAPHQL_URL__?: string }).__GRAPHQL_URL__;
+    if (w && /^https?:\/\//i.test(w)) {
+      return w;
+    }
+  }
+  return environment.graphqlUrl;
+}
+
 export function createApollo(): ApolloClient.Options {
   const uploadLink = new UploadHttpLink({
-    uri: environment.graphqlUrl,
-    credentials: 'include',
+    uri: resolveGraphqlUri(),
+    // Bearer token is in headers, not cookies — omit avoids extra CORS rules on cross-origin (Vercel → Render).
+    credentials: 'omit',
   });
 
   const authLink = setContext(() => {

@@ -1,6 +1,6 @@
-// Production / Vercel: must be your live API (https). Never use localhost here — the browser would call the user’s PC, not Render.
-// Replace the host below with your Render Web Service URL (Dashboard → copy URL, no trailing slash) + /graphql
+// Production build fallback when public/config.json has no URL (e.g. local `ng build`).
+// Prefer: set GRAPHQL_URL on Vercel (see scripts/inject-graphql-url.mjs) or fill public/config.json.
 export const environment = {
   production: true,
-  graphqlUrl: 'https://YOUR-RENDER-SUBDOMAIN.onrender.com/graphql',
+  graphqlUrl: 'http://localhost:4000/graphql',
 };
