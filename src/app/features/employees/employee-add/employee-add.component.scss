@@ -1,0 +1,86 @@
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.screen-title {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 0 0 1.25rem;
+  color: #37474f;
+}
+
+.form-panel {
+  background: #fff;
+  padding: 1.25rem 1.25rem 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 560px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .span-2 {
+    grid-column: span 1;
+  }
+}
+
+.file-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.file-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.7);
+
+  input[type='file'] {
+    max-width: 100%;
+  }
+}
+
+.small {
+  font-size: 0.85rem;
+}
+
+.muted {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.btn-save {
+  --mdc-filled-button-container-color: var(--ref-save) !important;
+  --mdc-filled-button-label-text-color: #fff !important;
+  min-width: 100px;
+}
+
+.btn-cancel {
+  --mdc-filled-button-container-color: var(--ref-danger) !important;
+  --mdc-filled-button-label-text-color: #fff !important;
+  min-width: 100px;
+}

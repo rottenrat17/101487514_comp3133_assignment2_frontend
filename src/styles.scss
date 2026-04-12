@@ -1,0 +1,20 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background: #eceff1;
+  color: #212121;
+}
+
+:root {
+  --app-header-bg: #424242;
+  --app-header-fg: #ffffff;
+  --ref-teal: #00897b;
+  --ref-teal-hover: #00695c;
+  --ref-danger: #c62828;
+  --ref-save: #2e7d32;
+  --ref-save-hover: #1b5e20;
+}

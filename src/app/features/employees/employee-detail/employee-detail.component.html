@@ -1,0 +1,59 @@
+<div class="page">
+  <div class="back-row">
+    <a mat-stroked-button routerLink="/employees">← Back to list</a>
+  </div>
+
+  @if (loading()) {
+    <div class="center"><mat-spinner diameter="40" /></div>
+  } @else if (error()) {
+    <div class="panel error-panel">{{ error() }}</div>
+  } @else if (employee()) {
+    @let emp = employee()!;
+    <h2 class="screen-title">Employee details</h2>
+
+    <div class="detail-panel" appHoverElevate>
+      @if (emp.employee_photo) {
+        <div class="photo-wrap">
+          <img [src]="emp.employee_photo" [alt]="emp.first_name + ' ' + emp.last_name" class="photo" />
+        </div>
+      }
+      <dl class="detail-fields">
+        <div class="field-row">
+          <dt>First name</dt>
+          <dd>{{ emp.first_name }}</dd>
+        </div>
+        <div class="field-row">
+          <dt>Last name</dt>
+          <dd>{{ emp.last_name }}</dd>
+        </div>
+        <div class="field-row">
+          <dt>Email</dt>
+          <dd>{{ emp.email }}</dd>
+        </div>
+        <div class="field-row">
+          <dt>Department</dt>
+          <dd>{{ emp.department }}</dd>
+        </div>
+        <div class="field-row">
+          <dt>Position</dt>
+          <dd>{{ emp.designation }}</dd>
+        </div>
+        <div class="field-row">
+          <dt>Gender</dt>
+          <dd>{{ emp.gender }}</dd>
+        </div>
+        <div class="field-row">
+          <dt>Salary</dt>
+          <dd>{{ emp.salary | salaryDisplay }}</dd>
+        </div>
+        <div class="field-row">
+          <dt>Date of joining</dt>
+          <dd>{{ joinedDate(emp.date_of_joining) }}</dd>
+        </div>
+      </dl>
+      <div class="detail-actions">
+        <a mat-flat-button class="btn-teal" [routerLink]="['/employees', emp._id, 'edit']">Update</a>
+      </div>
+    </div>
+  }
+</div>

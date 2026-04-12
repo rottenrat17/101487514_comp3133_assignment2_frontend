@@ -1,0 +1,39 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-height: 56px;
+  padding: 0 1rem;
+  background: var(--app-header-bg);
+  color: var(--app-header-fg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.app-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--app-header-fg) !important;
+}
+
+.shell {
+  min-height: calc(100vh - 56px);
+  padding-bottom: 2rem;
+}

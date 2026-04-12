@@ -1,0 +1,41 @@
+<div class="auth-wrap">
+  <mat-card class="auth-card" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>Sign in with the account you created.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        @if (serverError()) {
+          <p class="error-banner" role="alert">{{ serverError() }}</p>
+        }
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Username or email</mat-label>
+          <input matInput formControlName="usernameOrEmail" autocomplete="username" />
+          @if (form.controls.usernameOrEmail.hasError('required') && form.controls.usernameOrEmail.touched) {
+            <mat-error>Username or email is required</mat-error>
+          }
+          @if (form.controls.usernameOrEmail.hasError('minlength') && form.controls.usernameOrEmail.touched) {
+            <mat-error>Enter at least 2 characters</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" autocomplete="current-password" />
+          @if (form.controls.password.hasError('required') && form.controls.password.touched) {
+            <mat-error>Password is required</mat-error>
+          }
+          @if (form.controls.password.hasError('minlength') && form.controls.password.touched) {
+            <mat-error>Password must be at least 6 characters</mat-error>
+          }
+        </mat-form-field>
+        <div class="actions">
+          <button mat-flat-button color="primary" type="submit" [disabled]="loading()">
+            {{ loading() ? 'Signing in…' : 'Log in' }}
+          </button>
+          <a mat-button routerLink="/signup">Create an account</a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

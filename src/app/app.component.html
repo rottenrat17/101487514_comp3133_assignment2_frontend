@@ -1,0 +1,16 @@
+<header class="app-header">
+  <span class="app-title">Employees</span>
+  @if (auth.user()) {
+    <span class="spacer"></span>
+    <nav class="app-nav">
+      <a mat-button routerLink="/employees" class="nav-link">Employees</a>
+      <a mat-button routerLink="/employees/search" class="nav-link">Search</a>
+      <a mat-button routerLink="/employees/add" class="nav-link">Add Employee</a>
+      <button mat-button type="button" class="nav-link" (click)="auth.logout()">Logout</button>
+    </nav>
+  }
+</header>
+
+<main class="shell">
+  <router-outlet />
+</main>

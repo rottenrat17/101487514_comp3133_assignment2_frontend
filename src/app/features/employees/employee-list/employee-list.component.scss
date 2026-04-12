@@ -1,0 +1,73 @@
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2rem;
+}
+
+.screen-title {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 0 0 1rem;
+  color: #37474f;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem;
+}
+
+.error-panel {
+  background: #ffebee;
+  color: #b71c1c;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.table-panel {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.emp-table {
+  width: 100%;
+}
+
+.col-actions {
+  text-align: center;
+  white-space: normal;
+  min-width: 220px;
+}
+
+.col-actions .mat-mdc-button {
+  margin: 0.2rem;
+  min-width: 72px;
+  font-size: 0.8rem;
+}
+
+.btn-teal {
+  --mdc-filled-button-container-color: var(--ref-teal) !important;
+  --mdc-filled-button-label-text-color: #fff !important;
+}
+
+.btn-danger {
+  --mdc-filled-button-container-color: var(--ref-danger) !important;
+  --mdc-filled-button-label-text-color: #fff !important;
+}
+
+.muted {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.empty {
+  padding: 1rem 1.25rem 1.25rem;
+  margin: 0;
+  text-align: center;
+}

@@ -1,0 +1,60 @@
+<div class="search-page">
+  <div class="back-row">
+    <a mat-stroked-button routerLink="/employees">← Back to list</a>
+  </div>
+
+  <h2 class="screen-title">Search</h2>
+  <p class="lede">Find employees by job title, department, or both.</p>
+
+  <div class="filter-panel" appHoverElevate>
+    <form [formGroup]="form" (ngSubmit)="runSearch()" class="filter-row">
+      <mat-form-field appearance="outline" class="grow">
+        <mat-label>Job title</mat-label>
+        <input matInput formControlName="designation" placeholder="e.g. Developer" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="grow">
+        <mat-label>Department</mat-label>
+        <input matInput formControlName="department" placeholder="e.g. Engineering" />
+      </mat-form-field>
+      <div class="filter-actions">
+        <button mat-flat-button color="primary" type="submit" [disabled]="loading()">Search</button>
+        <button mat-stroked-button type="button" (click)="clear()">Clear</button>
+      </div>
+    </form>
+    @if (hint()) {
+      <p class="hint">{{ hint() }}</p>
+    }
+  </div>
+
+  @if (loading()) {
+    <div class="center"><mat-spinner diameter="36" /></div>
+  } @else if (searched()) {
+    <h3 class="results-title">{{ results().length }} result(s)</h3>
+    @if (results().length === 0) {
+      <div class="empty-panel">No matches. Try different words.</div>
+    } @else {
+      <div class="result-grid">
+        @for (emp of results(); track emp._id) {
+          <div class="person-card" appHoverElevate>
+            <div class="card-inner">
+              @if (emp.employee_photo) {
+                <img [src]="emp.employee_photo" alt="" class="avatar" />
+              } @else {
+                <div class="avatar placeholder">{{ emp.first_name.charAt(0) }}{{ emp.last_name.charAt(0) }}</div>
+              }
+              <div class="meta">
+                <strong>{{ emp.first_name }} {{ emp.last_name }}</strong>
+                <span class="role">{{ emp.designation }}</span>
+                <span class="dept">{{ emp.department }}</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a mat-flat-button class="btn-teal sm" [routerLink]="['/employees', emp._id]">View</a>
+              <a mat-flat-button class="btn-teal sm" [routerLink]="['/employees', emp._id, 'edit']">Update</a>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,35 @@
+.auth-wrap {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.full {
+  width: 100%;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.error-banner {
+  background: #ffebee;
+  color: #b71c1c;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+}

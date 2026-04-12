@@ -1,0 +1,91 @@
+<div class="page">
+  <h2 class="screen-title">Add Employee</h2>
+
+  <div class="form-panel" appHoverElevate>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="first_name" />
+        @if (form.controls.first_name.hasError('required') && form.controls.first_name.touched) {
+          <mat-error>First name is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="last_name" />
+        @if (form.controls.last_name.hasError('required') && form.controls.last_name.touched) {
+          <mat-error>Last name is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="span-2">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+        @if (form.controls.email.hasError('required') && form.controls.email.touched) {
+          <mat-error>Email is required</mat-error>
+        }
+        @if (form.controls.email.hasError('email') && form.controls.email.touched) {
+          <mat-error>Valid email is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+        @if (form.controls.gender.hasError('required') && form.controls.gender.touched) {
+          <mat-error>Gender is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Department</mat-label>
+        <input matInput formControlName="department" />
+        @if (form.controls.department.hasError('required') && form.controls.department.touched) {
+          <mat-error>Department is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Position</mat-label>
+        <input matInput formControlName="designation" />
+        @if (form.controls.designation.hasError('required') && form.controls.designation.touched) {
+          <mat-error>Designation is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Salary (min 1000)</mat-label>
+        <input matInput type="number" formControlName="salary" />
+        @if (form.controls.salary.hasError('required') && form.controls.salary.touched) {
+          <mat-error>Salary is required</mat-error>
+        }
+        @if (form.controls.salary.hasError('min') && form.controls.salary.touched) {
+          <mat-error>Salary must be at least 1000</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="span-2">
+        <mat-label>Date of joining</mat-label>
+        <input matInput type="date" formControlName="date_of_joining" />
+        @if (form.controls.date_of_joining.hasError('required') && form.controls.date_of_joining.touched) {
+          <mat-error>Date of joining is required</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="span-2 file-row">
+        <label class="file-label">
+          <span>Profile photo (optional)</span>
+          <input type="file" accept="image/*" (change)="onFile($event)" />
+        </label>
+        @if (fileName()) {
+          <span class="muted small">{{ fileName() }}</span>
+        }
+      </div>
+
+      <div class="span-2 form-actions">
+        <button mat-flat-button type="submit" class="btn-save" [disabled]="saving()">
+          {{ saving() ? 'Saving…' : 'Save' }}
+        </button>
+        <a mat-flat-button routerLink="/employees" class="btn-cancel">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

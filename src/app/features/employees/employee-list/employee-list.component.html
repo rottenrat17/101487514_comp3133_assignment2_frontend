@@ -1,0 +1,51 @@
+<div class="page">
+  <h2 class="screen-title">All employees</h2>
+
+  @if (loading()) {
+    <div class="center">
+      <mat-spinner diameter="40" />
+    </div>
+  } @else if (error()) {
+    <div class="panel error-panel">{{ error() }}</div>
+  } @else {
+    <div class="table-panel" appHoverElevate>
+      <div class="table-scroll">
+        <table mat-table [dataSource]="employees()" class="emp-table">
+          <ng-container matColumnDef="first_name">
+            <th mat-header-cell *matHeaderCellDef>First name</th>
+            <td mat-cell *matCellDef="let row">{{ row.first_name }}</td>
+          </ng-container>
+          <ng-container matColumnDef="last_name">
+            <th mat-header-cell *matHeaderCellDef>Last name</th>
+            <td mat-cell *matCellDef="let row">{{ row.last_name }}</td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+          </ng-container>
+          <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef>Department</th>
+            <td mat-cell *matCellDef="let row">{{ row.department }}</td>
+          </ng-container>
+          <ng-container matColumnDef="designation">
+            <th mat-header-cell *matHeaderCellDef>Position</th>
+            <td mat-cell *matCellDef="let row">{{ row.designation }}</td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="col-actions">Actions</th>
+            <td mat-cell *matCellDef="let row" class="col-actions">
+              <a mat-flat-button class="btn-teal" [routerLink]="['/employees', row._id, 'edit']">Update</a>
+              <button mat-flat-button class="btn-danger" type="button" (click)="delete(row)">Delete</button>
+              <a mat-flat-button class="btn-teal" [routerLink]="['/employees', row._id]">View</a>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      @if (employees().length === 0) {
+        <p class="empty muted">No employees yet. Add someone to get started.</p>
+      }
+    </div>
+  }
+</div>
